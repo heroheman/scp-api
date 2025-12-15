@@ -31,6 +31,8 @@ jobs:
 
       - name: "Setup Python"
         uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
 
       - name: "Install Crawler"
         working-directory: ./scp-crawler
@@ -70,7 +72,7 @@ jobs:
 
       - name: "Crawl Supplements"
         working-directory: ./scp-crawler
-        run: make data/scp_supplements.json
+        run: make data/scp_supplement.json
 
       - name: "Process Supplements"
         working-directory: ./scp-crawler
