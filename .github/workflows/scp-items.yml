@@ -24,7 +24,7 @@ jobs:
       - name: "Clone the Crawler"
         uses: actions/checkout@v6
         with:
-          repository: scp-data/scp_crawler
+          repository: heroheman/scp_crawler
           ref: "main"
           path: scp-crawler
 
@@ -66,6 +66,14 @@ jobs:
       - name: "Process GOI"
         working-directory: ./scp-crawler
         run: make data/processed/goi
+
+      - name: "Crawl Supplements"
+        working-directory: ./scp-crawler
+        run: make data/scp_supplements.json
+
+      - name: "Process Supplements"
+        working-directory: ./scp-crawler
+        run: make data/processed/supplement
 
       - name: "Move Files into API"
         run: cp -Rf ./scp-crawler/data/processed/* ./scp-api/docs/data/scp/
